@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Belfort Construction Limited — Barrie, ON</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #1c1c1c;
+      --dark: #1a1a1a;
+      --gold: #c9a84c;
+      --gold-light: #e0c06a;
+      --white: #f5f5f5;
+      --grey: #9a9a9a;
+      --offwhite: #f0eeea;
+      --lightgrey: #e8e6e2;
+      --section-pad: 90px 40px;
+    }
+
+    /* ── BASE ── */
+    html { overflow-x: hidden; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:visited { color: var(--gold); }
+    a:hover { color: var(--gold-light); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; min-height: 72px;
+      background: rgba(13,13,13,0.97);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 56px; width: auto; display: block; filter: invert(1); }
+    .nav-logo-text {
+      font-size: 1.2rem; font-weight: 700; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--white); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a {
+      font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--white); opacity: 0.85; transition: opacity 0.2s;
+      display: inline-flex; align-items: center; min-height: 48px;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* Hamburger — hidden on desktop */
+    .nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      color: var(--white); font-size: 1.6rem; line-height: 1;
+      padding: 8px; min-width: 48px; min-height: 48px;
+      align-items: center; justify-content: center;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 140px 10% 80px;
+      background: linear-gradient(135deg, #0d0d0d 60%, #1a1409 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 1;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.1;
+      max-width: 750px; margin-bottom: 28px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p {
+      font-size: 1.15rem; color: rgba(245,245,245,0.85);
+      max-width: 560px; margin-bottom: 44px;
+    }
+    .hero-buttons {
+      display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 14px 40px;
+      background: var(--gold); color: var(--black);
+      font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border-radius: 2px; transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--gold-light); color: var(--black); transform: translateY(-2px); }
+    .btn:visited { color: var(--black); }
+    .btn-outline {
+      background: transparent; color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--black); }
+    .btn-outline:visited { color: var(--gold); }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: flex; gap: 0;
+      background: var(--gold);
+    }
+    .stat {
+      flex: 1; padding: 32px 40px;
+      border-right: 1px solid rgba(13,13,13,0.2);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-size: 2.4rem; font-weight: 800;
+      color: var(--black); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(13,13,13,0.85);
+      margin-top: 6px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: var(--section-pad); }
+    .section-eyebrow {
+      font-size: 0.75rem; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      color: rgba(245,245,245,0.8); max-width: 580px;
+      font-size: 1.05rem; margin-bottom: 56px;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--dark); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center; max-width: 1200px; margin: 0 auto;
+    }
+    .about-text p { color: rgba(245,245,245,0.85); margin-bottom: 20px; }
+    .about-list { list-style: none; margin-top: 32px; }
+    .about-list li {
+      padding: 14px 0; border-bottom: 1px solid rgba(201,168,76,0.15);
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 0.95rem; color: rgba(245,245,245,0.9);
+    }
+    .about-list li::before {
+      content: '▸'; color: var(--gold); font-size: 0.9rem;
+      margin-top: 2px; flex-shrink: 0;
+    }
+    .about-highlight {
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px; padding: 40px;
+    }
+    .about-highlight h3 {
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .about-highlight p { color: rgba(245,245,245,0.85); font-size: 0.95rem; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--black); }
+    .services-inner { max-width: 1200px; margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .service-card {
+      background: var(--dark); padding: 40px 32px;
+      border-top: 3px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .service-card:hover { border-color: var(--gold); background: #1f1f1f; }
+    .service-icon { font-size: 2rem; margin-bottom: 20px; }
+    .service-card h3 {
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 12px; color: var(--white);
+    }
+    .service-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; }
+
+    /* ── PROJECTS ── */
+    .projects { background: var(--dark); }
+    .projects-inner { max-width: 1200px; margin: 0 auto; }
+    .project-card {
+      background: var(--black);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px; padding: 48px;
+      margin-bottom: 24px;
+    }
+    .project-tag {
+      display: inline-block;
+      font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      background: var(--gold); color: var(--black);
+      padding: 4px 12px; border-radius: 2px;
+      font-weight: 700; margin-bottom: 20px;
+    }
+    .project-card h3 {
+      font-size: 1.4rem; font-weight: 700; margin-bottom: 14px;
+    }
+    .project-card p { color: rgba(245,245,245,0.82); margin-bottom: 20px; }
+    .project-trades {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+    }
+    .trade-pill {
+      font-size: 0.75rem; padding: 5px 14px;
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 20px; color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── WHY US ── */
+    .why { background: var(--black); }
+    .why-inner { max-width: 1100px; margin: 0 auto; }
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .why-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 32px; background: var(--dark); border-radius: 4px;
+    }
+    .why-num {
+      font-size: 2rem; font-weight: 800;
+      color: var(--gold); opacity: 0.6; line-height: 1;
+      flex-shrink: 0;
+    }
+    .why-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-item p { font-size: 0.9rem; color: var(--grey); }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: linear-gradient(135deg, #1a1409 0%, #0d0d0d 100%);
+      text-align: center;
+    }
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+    .contact .section-sub { margin-left: auto; margin-right: auto; }
+    .contact-details {
+      display: flex; justify-content: center; gap: 60px;
+      margin: 48px 0; flex-wrap: wrap;
+    }
+    .contact-item { text-align: center; }
+    .contact-label {
+      font-size: 0.7rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .contact-value { font-size: 1rem; color: var(--white); }
+    .contact-value a {
+      display: inline-flex; align-items: center; min-height: 44px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808; padding: 28px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    footer p { font-size: 0.8rem; color: var(--grey); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — TABLET + MOBILE (≤ 900px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      :root { --section-pad: 64px 24px; }
+
+      /* NAV */
+      nav { padding: 0 20px; min-height: 64px; }
+      .nav-logo img { height: 44px; }
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(13,13,13,0.98);
+        border-bottom: 1px solid rgba(201,168,76,0.25);
+        padding: 8px 0;
+        gap: 0;
+      }
+      .nav-links.nav-open { display: flex; }
+      .nav-links a {
+        font-size: 1rem;
+        padding: 0 24px;
+        min-height: 52px;
+        opacity: 0.9;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        letter-spacing: 1px;
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      .nav-links a:hover { opacity: 1; background: rgba(201,168,76,0.07); }
+
+      /* HERO */
+      .hero { padding: 100px 6% 60px; }
+      .hero p { font-size: 1.05rem; }
+      .hero-buttons { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .btn-outline { margin-left: 0; }
+      .hero-buttons .btn { width: 100%; max-width: 280px; }
+
+      /* STATS */
+      .stats { flex-direction: column; }
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(13,13,13,0.2);
+        padding: 24px 20px;
+        display: flex; justify-content: center; gap: 16px; align-items: center;
+        text-align: left;
+      }
+      .stat:last-child { border-bottom: none; }
+      .stat-number { font-size: 2rem; }
+      .stat-label { margin-top: 2px; }
+
+      /* ABOUT */
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-list li { font-size: 1rem; }
+      .about-highlight { padding: 28px 24px; }
+      .about-highlight p { font-size: 1rem; }
+
+      /* SERVICES */
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .service-card { padding: 32px 24px; }
+      .service-card p { font-size: 1rem; }
+
+      /* PROJECTS */
+      .project-card { padding: 28px 20px; }
+      .project-card h3 { font-size: 1.2rem; }
+
+      /* WHY */
+      .why-grid { grid-template-columns: 1fr; gap: 16px; }
+      .why-item { padding: 24px 20px; }
+      .why-item p { font-size: 1rem; }
+
+      /* SECTION TEXT */
+      .section-sub { font-size: 1rem; margin-bottom: 40px; }
+      .about-text p { font-size: 1rem; }
+
+      /* CONTACT */
+      .contact-details {
+        flex-direction: column; gap: 28px;
+        align-items: center; margin: 36px 0;
+      }
+      .contact-value a { min-height: 48px; font-size: 1.05rem; }
+
+      /* FOOTER */
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE — SMALL MOBILE (≤ 480px)
+    ══════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      nav { padding: 0 16px; }
+
+      .hero { padding: 88px 5% 52px; }
+      .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
+      .hero p { font-size: 1rem; margin-bottom: 36px; }
+      .hero-buttons .btn { max-width: 100%; }
+
+      .section-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+
+      .stat { gap: 12px; }
+      .stat-number { font-size: 1.8rem; }
+
+      .project-card { padding: 24px 16px; }
+      .project-card h3 { font-size: 1.1rem; }
+      /* Wrap the "● Ongoing" badge below the title on tiny screens */
+      .project-card h3 span { display: block; margin-left: 0 !important; margin-top: 6px; }
+
+      .why-item { flex-direction: column; gap: 8px; }
+      .why-num { font-size: 1.6rem; opacity: 0.5; }
+
+      .about-highlight { padding: 24px 16px; }
+
+      footer { padding: 20px 16px; }
+      footer p { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="BelfortLogo-bw.jpg" alt="Belfort Construction" /></div>
+  <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+    &#9776;
+  </button>
+  <div class="nav-links" id="nav-links" role="navigation">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Barrie, Ontario — Full-Service Construction</p>
+  <h1>Built right.<br/><em>Every trade.</em><br/>Every time.</h1>
+  <p>Belfort Construction delivers complete facility solutions — from structural and civil work to interior finishes. One team. No gaps. No excuses.</p>
+  <div class="hero-buttons">
+    <a href="#contact" class="btn">Get in Touch</a>
+    <a href="#services" class="btn btn-outline">Our Services</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">29+</div>
+    <div class="stat-label">Years Combined Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Self</div>
+    <div class="stat-label">Performing Contractor</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">WSIB</div>
+    <div class="stat-label">Registered &amp; Insured</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Zero</div>
+    <div class="stat-label">GC Markup or Middlemen</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-eyebrow">Who We Are</p>
+      <h2 class="section-title">Serious capability.<br/>Small company accountability.</h2>
+      <p>Belfort Construction Limited is a Barrie-based construction firm led by principals with deep roots in heavy civil, structural, and multi-trade construction. We're not a general contractor who farms the work out — we self-perform, and where a licensed designation is required, we bring in vetted professionals who work under our direct management.</p>
+      <p>The construction professionals behind Belfort bring nearly three decades of combined experience across some of Ontario's most demanding projects. What that background gives you isn't just technical depth — it's a team that has seen how things go wrong at scale, and knows how to prevent it.</p>
+      <ul class="about-list">
+        <li>Owner-operated — the people you meet are the people on site</li>
+        <li>WSIB registered and fully insured</li>
+        <li>Self-performing across structural, civil, framing, and finishes — licensed specialists embedded for electrical and plumbing where required</li>
+        <li>Transparent pricing, no hidden scope creep</li>
+        <li>Experience managing complex unknowns and tight timelines</li>
+      </ul>
+    </div>
+    <div class="about-highlight">
+      <h3>Why clients trust us with the hard jobs</h3>
+      <p>When a project reveals surprises — hidden structural damage, failing systems, scope that doubles overnight — most contractors fold or inflate the bill. We've built our reputation on exactly these situations. We assess, communicate, and execute. No panic, no excuses.</p>
+      <br/>
+      <p>Our PM background means your project is tracked, documented, and delivered on time — even when the job changes under our feet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">Full facility coverage.<br/>Interior to exterior.</h2>
+    <p class="section-sub">From a single failing component to a complete facility overhaul — Belfort handles the full scope so you don't have to manage five contractors.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Structural &amp; Civil</h3>
+        <p>Foundation repair, structural reinforcement, drainage, grading, and site civil work. Built on nearly three decades of combined heavy infrastructure experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Mechanical &amp; Plumbing</h3>
+        <p>Full plumbing systems — installation, replacement, repair, and upgrades. Residential and commercial. Work requiring a licensed designation is executed by our vetted licensed plumbers, coordinated and managed directly by Belfort.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Electrical</h3>
+        <p>Electrical installation and upgrades to support facility operations, lighting, panel work, and code compliance. Where a Master Electrician is required, we work with licensed professionals under our direct management — no coordination overhead passed to the client.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Building Renovations</h3>
+        <p>Full interior renovations — framing, drywall, finishing, flooring, ceilings. Commercial and residential.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Exterior &amp; Façade</h3>
+        <p>Exterior cladding, façade restoration, roofing support, landscaping, and curb appeal improvements.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔑</div>
+        <h3>Facility Maintenance</h3>
+        <p>Ongoing facility upkeep and preventative maintenance programs for commercial and industrial properties.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-inner">
+    <p class="section-eyebrow">Featured Work</p>
+    <h2 class="section-title">Complex jobs.<br/>Clean outcomes.</h2>
+    <p class="section-sub">We don't shy away from the hard ones. Here's a sample of the kind of work we take on.</p>
+
+    <div class="project-card">
+      <span class="project-tag">Full Facility Rebuild</span>
+      <h3>Tulip Inn — Full Facility Restoration, Huntsville, ON <span style="font-size:0.75rem;color:var(--gold);font-weight:400;margin-left:10px;">● Ongoing</span></h3>
+      <p>Originally engaged for targeted repairs on an aging hotel property in Huntsville. Site assessment revealed critical failures throughout — structural compromise, failing mechanical systems, deteriorated electrical, and exterior cladding damage far beyond the initial scope.</p>
+      <p>Belfort is managing the full rebuild in-house: structural remediation, full plumbing and electrical replacement, interior renovation, and exterior façade restoration. Scope changes are communicated proactively and managed without disruption to the project timeline.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Structural</span>
+        <span class="trade-pill">Civil</span>
+        <span class="trade-pill">Electrical</span>
+        <span class="trade-pill">Plumbing</span>
+        <span class="trade-pill">Interior Renovation</span>
+        <span class="trade-pill">Exterior Façade</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Facility Maintenance</span>
+      <h3>Epiroc Mining Equipment — Head Office, Mississauga, ON</h3>
+      <p>Ongoing facility maintenance for the Canadian head office of Epiroc, a global leader in mining and infrastructure equipment. Scope includes interior and exterior maintenance, repairs, and improvements to keep the facility fully operational and professionally maintained.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Facility Maintenance</span>
+        <span class="trade-pill">Interior Repairs</span>
+        <span class="trade-pill">Exterior Maintenance</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Facility Maintenance — Multi-Site</span>
+      <h3>Mount Pleasant Group — Multiple Locations, GTA</h3>
+      <p>Facility maintenance services across multiple Mount Pleasant Group locations throughout the Greater Toronto Area. Coordinating consistent standards and responsive service delivery across a distributed portfolio of properties.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Facility Maintenance</span>
+        <span class="trade-pill">Multi-Site Coordination</span>
+        <span class="trade-pill">Interior &amp; Exterior Repairs</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Civil — Concrete &amp; Underground Infrastructure</span>
+      <h3>Hi-Tech Structures — Concrete Placement &amp; Valve Chamber Installation</h3>
+      <p>Subcontracted by Hi-Tech Structures for concrete placement and thrust block installation for valve chambers. Precision civil work requiring strict tolerances and coordination with underground infrastructure systems.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Concrete Placement</span>
+        <span class="trade-pill">Thrust Block Installation</span>
+        <span class="trade-pill">Valve Chambers</span>
+        <span class="trade-pill">Civil</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Commercial — Full Reconstruction</span>
+      <h3>The Burger Shop — Bracebridge, ON</h3>
+      <p>Full ground-up reconstruction of a commercial restaurant. Scope covered the entire build from structural foundation and framing through to interior finishes — including commercial kitchen installation, serving counters, bathrooms, flooring, drywall, steel stud framing, electrical, and plumbing. Delivered as a complete turnkey project — self-performed throughout, with licensed electricians and plumbers embedded under Belfort's direct management.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Structural</span>
+        <span class="trade-pill">Foundation</span>
+        <span class="trade-pill">Framing</span>
+        <span class="trade-pill">Electrical</span>
+        <span class="trade-pill">Plumbing</span>
+        <span class="trade-pill">Commercial Kitchen</span>
+        <span class="trade-pill">Interior Finishes</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Residential Development — Deficiency Rectification</span>
+      <h3>Sundial Homes — Residential Development</h3>
+      <p>Engaged by Sundial Homes to address maintenance items and deficiencies within an active residential development. Scope included identifying, prioritizing, and resolving construction deficiencies to builder standard across the development.</p>
+      <div class="project-trades">
+        <span class="trade-pill">Deficiency Rectification</span>
+        <span class="trade-pill">Interior Repairs</span>
+        <span class="trade-pill">Maintenance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="why-inner">
+    <p class="section-eyebrow">Our Edge</p>
+    <h2 class="section-title" style="margin-bottom:48px;">What makes Belfort different</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num" aria-hidden="true">01</div>
+        <div>
+          <h4>Self-performing, fully accountable</h4>
+          <p>We manage and self-perform the work. Where a licensed designation is required — master electricians, licensed plumbers — we bring in vetted professionals who work under our direct management. One point of contact. No markup chain. No coordination gaps.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num" aria-hidden="true">02</div>
+        <div>
+          <h4>PM-level discipline</h4>
+          <p>Our leadership is trained on major civil infrastructure projects. That rigor — scheduling, documentation, communication — carries into every job we take.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num" aria-hidden="true">03</div>
+        <div>
+          <h4>We handle the unknowns</h4>
+          <p>Every old building hides surprises. We've managed scope changes on bridge and road projects worth millions. A surprise wall cavity doesn't rattle us.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-num" aria-hidden="true">04</div>
+        <div>
+          <h4>Owner accountability</h4>
+          <p>You're working directly with the principals. No account managers, no hand-offs. The people responsible for the outcome are on the phone and on the job.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-eyebrow">Get In Touch</p>
+    <h2 class="section-title">Ready to talk about your project?</h2>
+    <p class="section-sub">Whether it's a quick repair or a full facility overhaul — we'll give you a straight answer and a fair number.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:Info@belfortconstruction.ca">Info@belfortconstruction.ca</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value"><a href="tel:+19058061839">+1 (905) 806-1839</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Address</div>
+        <div class="contact-value">49 High St., Barrie, ON L4N 5J4</div>
+      </div>
+    </div>
+    <a href="mailto:Info@belfortconstruction.ca" class="btn">Send Us a Message</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Belfort Construction Limited. Barrie, Ontario. All rights reserved.</p>
+  <p>WSIB Registered &nbsp;|&nbsp; Fully Insured</p>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.querySelector('.nav-toggle');
+    var navLinks = document.getElementById('nav-links');
+    if (!toggle || !navLinks) return;
+
+    toggle.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.innerHTML = open ? '&#10005;' : '&#9776;';
+    });
+
+    // Close nav when any link is tapped
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navLinks.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '&#9776;';
+      });
+    });
+
+    // Close nav when tapping outside
+    document.addEventListener('click', function (e) {
+      if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
+        navLinks.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '&#9776;';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
